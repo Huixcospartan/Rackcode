@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ES">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Rackcode tu plataforma de educacion online</title>
+	<meta name="viewport" content="width=device-width , initial-scale=1 ,maximum-scale=1" />
+	<link rel="stylesheet" href="/static/css/normalize.css">
+	<link rel="stylesheet" href="/static/css/estilos.css">
+</head>
+
+<body>
+	<nav class="links">
+		<a href="/" class="enlace logo">Rackcode</a>
+		<a href="/login" class="enlace login">Login</a>
+		<a href="/tutoriales" class="enlace">Tutoriales</a>
+		<a href="/#cursos" class="enlace">Cursos</a>
+		<a href="/" class="enlace">Inicio</a>
+		<br class="clearfix">
+	</nav>
+
+	<header id="header">
+		<figure class="fondo">
+			<img src="/static/imagenes/UXX.jpg" alt="">
+		</figure>
+		<h1 class="titulo">Rackcode tu plataforma de educación online</h1>
+		<h2 class="subtitulo">Conviértete en un experto y aprende a tu ritmo diseño, desarrollo y marketing <br> de una forma rapida y sencilla con clases online disponibles las 24 horas del día.</h2>
+
+
+		<figure>
+			<img src="/static/imagenes/Rackcode.png" alt="Rackcode">		
+		</figure>
+		<!--
+		<article class="intro">
+			<span class="icon-video2"></span>
+			<h3><a href="#">¿Que es Rackcode?</a></h3>
+		</article>
+		-->
+
+		<article class="comenzar">
+			<h3 class="titulo">¿Listo para aprender una nueva habilidad?</h3>
+			<h4 class="subtitulo">¡Lleva tus habilidades al siguiente nivel!</h4>
+			<a href="#cursos" class="ir">Comenzar</a>
+		</article>
+
+	</header>
+
+	<section id="cursos">
+		<h3 id="title-cursos">Cursos</h3>
+		
+	{% for curso in cursos %}
+		<article class="curso">
+			<figure class="curso-img">
+				<img src="/static/imagenes/UX.jpg" alt="">
+			</figure>
+
+			<div class="curso-info">
+				<h4 class="curso-title subtitulo">
+					<a href="/curso/{{curso.slug}}">{{curso.name}}</a>
+				</h4>
+				<p class="curso-small texto-normal">{{curso.smalldetails}}</p>
+				
+				{% if curso.level != 'b'%}
+				<div class="activo">
+					<span class="acceso">Basico</span>
+				{% elif curso.level != 'm' %}
+					<div class="activo">
+					<span class="acceso">Medio</span>
+				</div>
+				{% else %}
+					<div class="activo">
+					<span class="acceso">Avanzado</span>
+				</div>
+				{% endif %}
+				
+
+				{% if curso.tipos == 'p'%}
+				<div class="activo">
+					<span class="nivel icon-progress-one">Pago</span>
+				{% elif curso.tipos == 'e' %}
+					<div class="activo">
+					<span class="nivel icon-progress-one">Exclusivo</span>
+				</div>
+				{% else %}
+					<div class="activo">
+					<span class="nivel icon-progress-one">Gratuito</span>
+				</div>
+				{% endif %}
+				
+
+				<span class="detalles">
+					<a href="/curso/{{curso.slug}}">Ver mas detalles</a>
+				</span>
+				
+
+			</div>
+
+		</article>
+
+	{% endfor %}
+
+		
+		
+
+
+	</section>
+
+	<section id="contactanos">
+		<h3>Contactanos</h3>
+		<p>Envianos tu correo nosotros te contactamos enseguida</p>
+		<input type="email" name="" value="" placeholder="Email">
+		<button type="submit">Enviar</button>
+	</section>
+	<footer>
+		<article class="rackcode">
+			
+				<img src="/static/imagenes/Rackcode.png" alt="">
+				<span>
+					<p>Somos una plataforma de educación online enfocada en Tecnologias de la Informacion.</p>
+					<p>© Rackcode. All rights reserved. Design: Hector Campos Alonso</p>
+				</span>
+		</article>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ES">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width , initial-scale=1 ,maximum-scale=1" />
+	<title>Rackcode Tutoriales</title>
+	<link rel="stylesheet" href="/static/css/normalize.css">
+	<link rel="stylesheet" href="/static/css/estilos.css">
+</head>
+
+<body>
+	<nav class="links">
+		<a href="/" class="enlace logo">Rackcode</a>
+		<a href="/login" class="enlace login">Login</a>
+		<a href="/tutoriales" class="enlace">Tutoriales</a>
+		<a href="/#cursos" class="enlace">Cursos</a>
+		<a href="/login" class="enlace">Inicio</a>
+		<br class="clearfix">
+	</nav>
+
+	<header id="header">
+		<figure class="fondo">
+			<img src="/static/imagenes/UXX.jpg" alt="">
+		</figure>
+		<h1 class="titulo">Tutoriales </h1>
+		<h2 class="subtitulo">Aprende tecnicas de desarollo con practicos tutoriales elaborados por estudiantes de la plataforma con temas de Tecnologia, Programacion, 
+		Diseño Web, Desarrollo Movil, Linux y las todas las nuevas tendencias tecnologicas</h2>
+
+
+		<figure>
+			<img src="/static/imagenes/Rackcode.png" alt="Rackcode">		
+		</figure>
+		<!--
+		<article class="intro">
+			<span class="icon-video2"></span>
+			<h3><a href="#">¿Que es Rackcode?</a></h3>
+		</article>
+		-->
+
+		<article class="comenzar">
+			<h3 class="titulo">¿Quieres dar una compartir tu experiencia?</h3>
+			<h4 class="subtitulo">¡Comunicate con nosotros te bridamos el espacio!</h4>
+			<a href="#contactanos" class="ir">Contactar</a>
+
+			<nav class="tags">
+				<ul>
+					<li class="tag-1"><a href="/tag/Javascript">Javascript</a></li><li class="tag-1"><a href="/tag/Java">Java</a></li><li class="tag-1"><a href="/tag/NodeJS">Node JS</a></li><li class="tag-1"><a href="/tag/Django">Django</a></li><li><a href="/tag/Backend">Backend</a></li><li><a href="/tag/UX">UX</a></li><li><a href="/tag/Frontend">Frontend</a></li><li><a href="/tag/Diseño-Web">Diseño Web</a></li><li><a href="/tag/Servidores">Servidores</a></li><li><a href="/tag/Linux">Linux</a></li><li><a href="/tag/Tendencias">Tendencias</a></li>
+					
+				</ul>
+			</nav>
+		</article>
+
+	</header>
+
+	<section id="cursos">
+		<h3 id="title-cursos">Tutoriales</h3>
+
+	{% for tutoriales in tutorial %}
+
+		<article class="curso">
+			<figure class="curso-img">
+				<img src="/static/imagenes/UX.jpg" alt="">
+			</figure>
+			<div class="curso-info">
+				<a href="/tutorial/{{tutoriales.slug}}">
+					<h4 class="subtitulo">{{tutoriales.name}}</h4>
+				</a>
+				
+				<p class="texto-normal">
+					{{tutoriales.smalldetails}}</p>
+				
+				<h5>
+					<span class="autor">Autor: Alonso Campos</span>
+					<span class="duracion">{{tutoriales.duration}}</span>
+					<span class="comentarios">Comentarios: 10</span>
+				</h5>
+				
+				<div class="tags">
+				{% for tags in tutoriales.admin_tags %}
+					<span class="tag"><a href="/tag/{{tags.name}}">{{tags.name}}</a></span>
+				{% endfor %}
+				</div>
+				
+			</div>
+		</article>
+	{% endfor %}
+		
+	</section>
+
+	<section id="contactanos">
+		<h3>Contactanos</h3>
+		<p>Envianos tu correo nosotros te contactamos enseguida</p>
+		<input type="email" name="" value="" placeholder="Email">
+		<button type="submit">Enviar</button>
+	</section>
+	<footer>
+		<article class="rackcode">
+				<img src="/static/imagenes/Rackcode.png" alt="">
+				<span>
+					<p>Somos una plataforma de educación online enfocada en Tecnologias de la Informacion.</p>
+					<p>© Rackcode. All rights reserved. Design: Hector Campos Alonso</p>
+				</span>
+		</article>
+    </footer>
+</body>
+</html>

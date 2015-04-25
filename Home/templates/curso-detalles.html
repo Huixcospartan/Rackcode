@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ES">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Curso de {{curso.name}} - Rackcode</title>
+	<meta name="viewport" content="width=device-width , initial-scale=1 ,maximum-scale=1" />
+	<link rel="stylesheet" href="/static/css/normalize.css">
+	<link rel="stylesheet" href="/static/css/estilos.css">
+</head>
+
+<body>
+	<nav class="links">
+		<a href="/" class="enlace logo">Rackcode</a>
+		<a href="/login" class="enlace login">Login</a>
+		<a href="/tutoriales" class="enlace">Tutoriales</a>
+		<a href="/#cursos" class="enlace">Cursos</a>
+		<a href="/" class="enlace">Inicio</a>
+		<br class="clearfix">
+	</nav>
+
+	<header class="single-curso">
+		<h1 class="single-title">{{curso.name}}</h1>
+		<h2 class="single-title single-subtitle">{{curso.smalldetails}}
+    	</h2>
+
+		<span> 0 calificaciones, 32 estudiantes inscritos </span>
+		<h3 class="single-title single-subtitle">Enseñado por 
+			<span><a href="#">Alonso Campos</a></span> 
+		</h3>
+		<figure class="single-imagen">
+			<img src="/static/imagenes/Backend.jpg" alt="">
+		</figure>
+
+	</header>
+
+	<section class="single-detalle">
+		
+		<article class="single-sec">
+			<h3 class="titulo">Sobre este curso</h3>
+
+			<div class="especificacion">
+				<div class="nivel">
+					<p class="icon-tag">Nivel</p>
+					<p class="icon-tag">Categoria</p>
+					<p class="icon-tag">Clases</p>
+				</div>
+				<div class="detalle">
+					{% if curso.level != 'b'%}
+						<p>Basico</p>
+					{% elif curso.level != 'm' %}
+						<p>Medio</p>
+					{% else %}
+						<p>Avanzado</p>
+					{% endif %}
+
+					<p>Backend</p>
+					<p>21 Clases</p>
+				</div>
+			</div>
+
+			<h3 class="titulo">US$ 54</h3>
+			<p class="boton">
+				<a href="#">Tomar Curso</a>
+			</p>
+			
+		</article>
+
+		<article class="single-sec">
+			<h3 class="titulo">Descripción del curso</h3>
+			<p class="single-texto">
+				{{curso.longdetails}}
+			</p>
+		</article>
+
+		<article class="single-sec">
+			<h3 class="titulo">¿Qué voy a aprender?</h3>
+			<p class="single-texto">-Aprenderás: -Crear un nuevo proyecto en Android Studio. -Utilizar librerías desarrolladas por terceros como Okhttp -Obtener información desde un servidor remoto a través de solicitudes HttpGet -Manipular esta información para usarla en la aplicación -Uso del patrón de diseño Modelo-vista-controlador </p>
+			
+		</article>
+
+		<article class="single-sec">
+			<h3 class="titulo">¿A quién va dirigido?</h3>
+			<p class="single-texto">A personas que quieran aprender los fundamentos para desarrollar aplicaciones para dispositivos móviles con el sistema operativo android.Siguiendo las mejores técnicas de diseño y desarrollo de aplicaciones. Utilizando los estándares y las aplicaciones más modernas. A personas que quieran hacer aplicaciones que se comuniquen con servidores remotos para optener determinada información útil para el usuario </p>
+		</article>
+
+		<article class="single-sec">
+			<h3 class="titulo">¿Alguna pregunta?</h3>
+			<p class="single-texto">Escríbenos en Twitter a <a href="#">@Rackcode</a>  o en Facebook en <a href="#">Rackcode</a> y revisaremos lo que sea que haga falta, preguntas sobre el curso, sobre Rackcode. </p>
+		</article>
+
+		<article class="single-sec">
+			<h3 class="titulo">Comparte este curso:</h3>
+			<span class="icon-linkedin social"></span>
+			<span class="icon-linkedin social"></span>
+			<span class="icon-dribbble social"></span>
+			<span class="icon-linkedin social"></span>
+		</article>
+		
+	</section>
+
+	<ul class="modulos">
+	{% for contenido in curso.contenido.all %}
+		<h2>Contenido {{contenido.generation}} / {{contenido.name}}</h2>	
+			{% for modulo in contenido.modulo.all %}
+				<li class="modulo">
+					
+					<h3 class="title icon-flag2">Módulo : “{{modulo.name}}”</h3>
+					{% for tema in modulo.tema.all %}
+					<ul class="modulo-contenido">
+
+						<a href="tema.html">
+							<li class="tema">
+
+								<p class="tema-titulo">
+									{{tema.name}}
+								</p>
+								
+
+								{% if tema.contenido == 'v'%}
+									<p class="icon-document icono"></p>
+								{% elif tema.contenido == 'l' %}
+									<p class="icon-link icono"></p>
+								{% elif tema.contenido == 'c' %}
+									<p class="icon-article icono"></p>
+								{% else %}
+									<p class="icon-locked icono"></p>
+								{% endif %}
+
+
+								
+
+								<p class="icon-clock2 tema-tipo">{{tema.duration}}:00 min</p>
+
+							</li>
+						</a>
+					</ul>
+					{% endfor %}
+				</li>
+			{% endfor %}		
+	{% endfor %}
+		</ul>
+	<footer>
+		<article class="rackcode">
+			
+				<img src="/static/imagenes/Rackcode.png" alt="">
+				<span>
+					<p>Somos una plataforma de educación online enfocada en Tecnologias de la Informacion.</p>
+					<p>© Rackcode. All rights reserved. Design: Hector Campos Alonso</p>
+				</span>
+		</article>
+    </footer>
+
+</body>
+</html>
